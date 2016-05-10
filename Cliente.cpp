@@ -12,7 +12,10 @@ Cliente::Cliente(ifstream &in){//Consideramos o ID igual a zero, data de adesao 
 
 Cliente::Cliente(unsigned int id, string nome, Data cartaoCliente, float volCompras)
 {
-
+	this->id=id;//***
+	this->nome=nome;//***
+	this->cartaoCliente=cartaoCliente;//***
+	this->volCompras=volCompras;//***
 }
 
 
