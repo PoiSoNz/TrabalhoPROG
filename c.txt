@@ -1,4 +1,0 @@
-1 ; Rui Pereira ; 234.67
-2 ; Maria de Lurdes ; 123.54 
-5 ; Joana Beires ; 1231.00 
-6 ; Manuela Moura ; 1236.80
