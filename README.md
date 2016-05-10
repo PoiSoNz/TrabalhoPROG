@@ -4,5 +4,5 @@ asgdasdg
 
 if(0)
 {
-saidesta merda
+
 }
