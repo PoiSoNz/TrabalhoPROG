@@ -38,7 +38,7 @@ void checkFile(ifstream &stream, string nomeFicheiro)//verifica se um ficheiro f
 	cout << "O ficheiro foi lido com sucesso: ";
 }
 
-Cliente lineClients(ifstream &stream)//
+Cliente fillClientsVector(ifstream &stream)//
 {
 	string line;
 	int lineCount = 0;
