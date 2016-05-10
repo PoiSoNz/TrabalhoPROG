@@ -17,4 +17,4 @@ Defini a função leUnsignedShortInt (está em utils.cpp)
 Mudei os 'cout' em Menu.cpp em conformidade (repara no profissionalismo) com o que penso ser o pretendido 
 nos menus segundo o guião do trabalho.
 
-so para ver se da para editar
+
