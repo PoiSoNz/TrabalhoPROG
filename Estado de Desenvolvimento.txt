@@ -1,0 +1,19 @@
+Completei em parte o cliente.cpp
+(considerei que o construtor da classe Cliente cria um cliente com ID igual a zero, nome com string vazia, 
+data de adesão 0/0/0 e volume de compras também igual a zero.)
+
+Completei em parte o produto.cpp
+(considerei que o construtor da classe Produto cria um produto com string vazia no nome e custo igual a zero.)
+
+Completei em parte o data.cpp
+(aqui nao foi preciso considerar nada porque o default constructor da classe Data ja
+estava definido, sem nada lá dentro, na header data.h)
+
+Passei a função checkFile que tínhamos criado do main.cpp para o utils.cpp e escrevi o respetivo prototipo 
+da função no utils.h
+
+Defini a função leUnsignedShortInt (está em utils.cpp)
+
+Mudei os 'cout' em Menu.cpp em conformidade (repara no profissionalismo) com o que penso ser o pretendido 
+nos menus segundo o guião do trabalho.
+
