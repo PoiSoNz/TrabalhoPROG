@@ -18,7 +18,7 @@ class Cliente {
 
  public:
   Cliente(ifstream & in);
-  //Cliente(unsigned int id, string nome, Data cartaoCliente, float volCompras);
+  Cliente(unsigned int id, string nome, Data cartaoCliente, float volCompras);//*****
   string getNome() const;
   unsigned int getId() const;
   float getVolCompras() const;
