@@ -1,19 +1,20 @@
 Completei em parte o cliente.cpp
 (considerei que o construtor da classe Cliente cria um cliente com ID igual a zero, nome com string vazia, 
-data de ades„o 0/0/0 e volume de compras tambÈm igual a zero.)
+data de ades√£o 0/0/0 e volume de compras tamb√©m igual a zero.)
 
 Completei em parte o produto.cpp
 (considerei que o construtor da classe Produto cria um produto com string vazia no nome e custo igual a zero.)
 
 Completei em parte o data.cpp
 (aqui nao foi preciso considerar nada porque o default constructor da classe Data ja
-estava definido, sem nada l· dentro, na header data.h)
+estava definido, sem nada l√° dentro, na header data.h)
 
-Passei a funÁ„o checkFile que tÌnhamos criado do main.cpp para o utils.cpp e escrevi o respetivo prototipo 
-da funÁ„o no utils.h
+Passei a fun√ß√£o checkFile que t√≠nhamos criado do main.cpp para o utils.cpp e escrevi o respetivo prototipo 
+da fun√ß√£o no utils.h
 
-Defini a funÁ„o leUnsignedShortInt (est· em utils.cpp)
+Defini a fun√ß√£o leUnsignedShortInt (est√° em utils.cpp)
 
 Mudei os 'cout' em Menu.cpp em conformidade (repara no profissionalismo) com o que penso ser o pretendido 
-nos menus segundo o gui„o do trabalho.
+nos menus segundo o gui√£o do trabalho.
 
+so para ver se da para editar
