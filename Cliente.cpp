@@ -11,7 +11,7 @@ Cliente::Cliente(){//Um cliente criado por omissao tem ID igual a zero, data de 
 	id=0;
 	nome= "";
 	cartaoCliente=d;
-	volCompras=0.0;
+	volCompras=0;
 }
 
 Cliente::Cliente(unsigned int id, string nome, Data cartaoCliente, float volCompras)
