@@ -22,8 +22,10 @@ class Transacao {
 
  public:
   Transacao(ifstream & in); // trabsacao na forma de  idCliente ; data ; lista de produtos
+  Transacao(unsigned int idCliente, Data data, vector<string> produtos);
   unsigned int getIdCliente() const;
   void save(ofstream & out) const; // guarda a transacao
+
   friend ostream& operator<<(ostream& out, const Transacao & trans); // mostra a transacao
 };
 
