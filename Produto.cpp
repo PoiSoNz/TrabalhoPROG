@@ -6,6 +6,12 @@ Produto::Produto(ifstream & in){ // nome ; custo
 	custo = 0;
 }//Consideramos o nome com string vazia e o custo igual a zero.
 
+Produto::Produto(string nome, float custo)
+{
+	this->nome = nome;
+	this->custo = custo;
+}
+
 string Produto::getNome() const {
   return nome;
 }
