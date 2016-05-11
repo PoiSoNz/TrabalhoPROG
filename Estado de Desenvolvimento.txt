@@ -17,4 +17,8 @@ Defini a função leUnsignedShortInt (está em utils.cpp)
 Mudei os 'cout' em Menu.cpp em conformidade (repara no profissionalismo) com o que penso ser o pretendido 
 nos menus segundo o guião do trabalho.
 
+Feito o construtor da classe Cliente em que sao especificados os parametros.
+
+Feita a funcao para preencher o vetor de clientes (está em VendeMaisMais.cpp)
+
 
