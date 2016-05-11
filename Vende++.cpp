@@ -2,8 +2,10 @@
 
 
 VendeMaisMais::VendeMaisMais(string loja, string fichClients, string fichProdutos, string fichTransacoes){
-
-  // A IMPLEMENTAR 
+	this->loja=loja;
+	this->fichClientes=fichClientes;
+	this->fichProdutos=fichProdutos;
+	this->fichTransacoes=fichTransacoes;
 }
 
 /*********************************
