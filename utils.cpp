@@ -35,6 +35,6 @@ void checkFile(ifstream &stream, string nomeFicheiro)//verifica se um ficheiro f
 		cin >> nomeFicheiro;
 		stream.open(nomeFicheiro);
 	}
-	cout << "O ficheiro foi lido com sucesso: ";
+	cout << "O ficheiro foi lido com sucesso! ";
 }
 
