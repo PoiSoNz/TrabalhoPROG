@@ -1,6 +1,11 @@
 #include "Data.h"
 
 
+Data::Data(){//Uma data criada por omissão será 0/0/0
+	dia=0;
+	mes=0;
+	ano=0;
+}
 Data::Data(string dataStr){ // data na forma DD/MM/AAA
 	int barra1 = dataStr.find_first_of('//');
 	int barra2 = dataStr.find_last_of('//');
