@@ -19,6 +19,7 @@ class Produto {
 
  public:
   Produto(ifstream & in);
+  Produto();
   Produto(string nome, float custo);
   string getNome() const;
   float getCusto() const;
