@@ -10,28 +10,21 @@
 
 
 int main(){
-  string loja, fichClients, fichProdutos, fichTransacoes;
-  ifstream fclients, fproducts, ftransactions;
+  string loja, fichClientes, fichProdutos, fichTransacoes;
+  ifstream fclientes, fprodutos, ftransacoes;
   string line;
+  
   //Clientes
   cout << "Nome do ficheiro de clientes? ";
-  cin >> fichClients;
-  checkFile(fclients, fichClients);
-  //lineClients
+  cin >> fichClientes;
+  checkFile(fclientes, fichClientes);
+  
 
-  //Ficheiro de produtos
-  cout << "Name of the products' file? ";
-  cin >> productsFile;
-  fproducts.open(productsFile);
-  while (!fproducts.is_open())
-  {
-	  cout << "The file " << "\"" << productsFile << "\"" << " couldn't be found." << endl << endl;
-	  cout << "Insert the products' file name again: ";
-	  cin >> productsFile;
-	  fproducts.open(productsFile);
-  }
-  cout << "The file was sucessfully read.";
-  cout << endl;
+  //Produtos
+  cout << "Nome do ficheiro de produtos? ";
+  cin >> fichProdutos;
+  checkFile(fprodutos, fichProdutos);
+  
   while (getline(fproducts, line))
   {
 	  string product = line;
@@ -41,19 +34,11 @@ int main(){
   cout << endl;
   //
 
-  //Ficheiro de transacoes
-  cout << "Name of the transactions' file? ";
-  cin >> transactionsFile;
-  ftransactions.open(transactionsFile);
-  while (!ftransactions.is_open())
-  {
-	  cout << "The file " << "\"" << transactionsFile << "\"" << " couldn't be found." << endl << endl;
-	  cout << "Insert the transactions' file name again: ";
-	  cin >> transactionsFile;
-	  ftransactions.open(transactionsFile);
-  }
-  cout << "The file was sucessfully read.";
-  cout << endl;
+  //Transacoes
+  cout << "Nome do ficheiro de transacoes? ";
+  cin >> fichTransacoes;
+  checkFile(ftransacoes, fichTransacoes);
+  
   while (getline(ftransactions, line))
   {
 	  int index = line.find_first_of(';');
