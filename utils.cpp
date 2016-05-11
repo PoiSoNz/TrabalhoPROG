@@ -59,12 +59,12 @@ void trim(string &s)
 	}
 }
 
-int encontraPosicao(string s, char c, unsigned int num)// retorna a posição do numº caracter c na string s
+int encontraPosicao(string s, char *c, unsigned int num)// retorna a posição do numº caracter *c na string s
 {
 	int contador= 0;
 	for ( int i = 0; i<s.size(); i++)
 	{
-		if(s.at(i)==c)
+		if(s.at(i)==*c)
 		contador++;
 		
 		if(contador==num)
