@@ -11,10 +11,11 @@ Transacao::Transacao(ifstream & in){ // le uma transacao na forma de  idcliente 
 }
 
 Transacao::Transacao(){//Uma transação criada por defeito terá um id igual a zero, data igual a 0/0/0 e nenhum produto
+	vector<string>vetor;
 	Data d;
 	idCliente=0;
 	data=d;
-	produtos="";
+	produtos=vetor;
 }
 
 Transacao::Transacao(unsigned int idCliente, Data data, vector<string> produtos)
