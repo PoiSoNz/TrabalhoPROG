@@ -1,13 +1,40 @@
 #include "Cliente.h"
 
 
-Cliente::Cliente(ifstream &in){//Consideramos o ID igual a zero, data de adesao 0/0/0 e volume de compras igual a zero.
-	id = 0;
-	nome = "";
-	cartaoCliente.setDia(0);
-	cartaoCliente.setMes(0);
-	cartaoCliente.setAno(0);
-	volCompras = 0;
+Cliente::Cliente(ifstream &fichClientes){//Consideramos o ID igual a zero, data de adesao 0/0/0 e volume de compras igual a zero.
+	unsigned int numClientes;
+	fichClientes >> numClientes;
+	fichClientes.ignore();//Para que o new line a seguir ao número de clientes do ficheiro nao seja lido
+	
+	while(numClientes>0)
+	{
+		string linha;
+		string id;
+		string nome;
+		string cartaoCliente;
+		string volCompras;
+		getline(fichClientes, linha);
+		int primeiroPontovirgula;
+		int segundoPontovirgula;
+		int terceiroPontovirgula;
+		
+		primeiroPontovirgula= find_first_of(";");
+		segundoPontovirgula=
+		terceiroPontovirgula= find_last_of(";");
+		
+		id= linha.substr(0, primeiroPontoVirgula);
+		nome= linha.substr(primeiroPontovirgula + 1, segundoPontovirgula - (primeiroPontovirgula + 1));
+		trim(nome);
+		cartaoCliente= linha.substr(segundoPontovirgula + 1, terceiroPontovirgula - (segundoPontovirgula + 1));
+		volCompras= linha.substr(terceiroPontovirgula + 1);
+		
+		Cliente c( stoi(id), nome, cartaoCliente, stof(volCompras));
+		
+		vetorClientes.push_back(c);
+		
+		
+		
+		
 }
 
 Cliente::Cliente(unsigned int id, string nome, Data cartaoCliente, float volCompras)
