@@ -19,6 +19,7 @@ class Produto {
 
  public:
   Produto(ifstream & in);
+  Produto(string nome, float custo);
   string getNome() const;
   float getCusto() const;
   int indiceProduto(string nome); // uso do map para "traduzir" o nome em indice no vetor de produtos
