@@ -43,6 +43,9 @@ class VendeMaisMais{
   void listarClientesOrdemAlfa() const;
   void listarProdutos() const;
   void mostraInformacaoCliente(string nome);
+  void fillClientsVector(ifstream &stream);//preenche o vetor de clientes
+  void fillProductsVector(ifstream &stream);//preenche o vetor de produtos
+  void fillTransactionsVector(ifstream &stream);//preenche o vetor de transacoes
   void saveChanges() const;
 
   friend ostream& operator<<(ostream& out, const VendeMaisMais & supermercado);
