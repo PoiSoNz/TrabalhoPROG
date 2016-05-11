@@ -38,3 +38,16 @@ void checkFile(ifstream &stream, string nomeFicheiro)//verifica se um ficheiro f
 	cout << "O ficheiro foi lido com sucesso! ";
 }
 
+
+void extractProducts(vector<string> vetor, string listaprodutos)
+{
+	while (listaprodutos != "")
+	{
+		unsigned int index = listaprodutos.find_first_of(',');
+		string produto = listaprodutos.substr(0, index);
+		vetor.push_back(produto);
+		extractProducts(vetor, listaprodutos.substr(index + 2));
+	}
+}
+
+
