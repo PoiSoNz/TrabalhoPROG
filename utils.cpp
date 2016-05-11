@@ -59,7 +59,7 @@ void trim(string &s)
 	}
 }
 
-int encontraCaracter(string s, char c, unsigned int num)// retorna a posição do numº caracter c na string s
+int encontraPosicao(string s, char c, unsigned int num)// retorna a posição do numº caracter c na string s
 {
 	int contador= 0;
 	for ( int i = 0; i<s.size(); i++)
