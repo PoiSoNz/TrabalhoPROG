@@ -6,10 +6,10 @@ Cliente::Cliente(ifstream &in){//Consideramos o ID igual a zero, data de adesao 
           		
 }
 
-Cliente::Cliente(){//Um cliente criado por omissao tem ID igual a zero, data de adesao 0/0/0 e volume de compras igual a zero.
-	Date d(0/0/0);
+Cliente::Cliente(){//Um cliente criado por omissao tem ID igual a zero, data de adesao 0/0/0 , volume de compras igual a zero e não tem nome
+	Data d;
 	id=0;
-	nome= "Cliente";
+	nome= "";
 	cartaoCliente=d;
 	volCompras=0.0;
 }
