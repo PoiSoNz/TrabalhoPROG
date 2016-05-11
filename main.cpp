@@ -28,7 +28,7 @@ int main(){
   cin >> fichProducts;
   checkFile(fproducts, fichProducts);
 
-  //Ficheiro de transacoes
+  //Transacoes
   cout << "Nome do ficheiro de transacoes? ";
   cin >> fichTransactions;
   checkFile(ftransactions, fichTransactions);
