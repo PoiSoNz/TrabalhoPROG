@@ -9,6 +9,12 @@ Data::Data(string dataStr){ // data na forma DD/MM/AAA
 	this->ano = stoi(dataStr.substr(barra2 + 1));
 }
 
+Data::Data(int dia, int mes, int ano){// data dividida em dia, mes, ano
+	this->dia = dia;
+	this->mes = mes;
+	this->ano = ano;
+}	
+
 int Data::getDia() const{
   return dia;
 }
