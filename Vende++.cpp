@@ -23,6 +23,7 @@ void VendeMaisMais::fillClientsVector(ifstream &stream)
 			int index3 = line.find_last_of(';');
 			unsigned int id = stoi(line.substr(0, index1 - 1));
 			string name = line.substr(index1 + 2, (index2 - 1) - (index1 + 2));
+			trim(name);
 			Data date = Data(line.substr(index2 + 2, (index3 - 1) - (index2 + 2)));
 			float value = stof(line.substr(index3 + 2));
 			Cliente c = Cliente(id, name, date, value);
