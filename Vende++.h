@@ -39,6 +39,7 @@ class VendeMaisMais{
 
  public:
   VendeMaisMais(string loja, string fichClients, string fichProdutos, string fichTransacoes);
+  void fillClientsVector(ifstream &stream);//atualizei isto
   void listarClientesOrdemAlfa() const;
   void listarProdutos() const;
   void mostraInformacaoCliente(string nome);
