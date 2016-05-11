@@ -2,9 +2,12 @@
 
 
 Produto::Produto(ifstream & in){ // nome ; custo
-	nome = "";
-	custo = 0;
-}//Consideramos o nome com string vazia e o custo igual a zero.
+}
+
+Produto::Produto(){//Um produto criado por omissão não tem nome e tem custo zero.
+	nome="";
+	custo=0;
+}
 
 Produto::Produto(string nome, float custo)
 {
