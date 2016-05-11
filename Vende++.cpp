@@ -10,7 +10,7 @@ VendeMaisMais::VendeMaisMais(string loja, string fichClients, string fichProduto
  * Gestao de Clientes
  ********************************/  
 
-void VendeMaisMais::fillClientsVector(ifstream &stream)//preenche o vetor de clientes
+void VendeMaisMais::fillClientsVector(ifstream &stream)
 {
 	string line;
 	int lineCount = 0;
@@ -30,11 +30,9 @@ void VendeMaisMais::fillClientsVector(ifstream &stream)//preenche o vetor de cli
 			lineCount++;
 		}
 	}
-}//afinal esta funcao tem de estar aqui, e nao em utils.cpp, porque sendo o vetor de clientes private à classe Cliente, so se pode
-// aceder a esse vetor numa funcao que seja membro da classe em causa. (se pusesse em utils.cpp nao conseguia chamar posteriormente 
-// a funcao fillClientsVector na main, porque o parametro vetor de clientes que ia necessitar é considerado inacessível)
+}
 
-// lista os clientes por ordem alfabetica crescente
+// lista os cleinets por ordem alfabetica crescente
 void VendeMaisMais::listarClientesOrdemAlfa() const{
 
   // A IMPLEMENTAR 
@@ -52,6 +50,24 @@ void VendeMaisMais::mostraInformacaoCliente(string nome){
  * Gestao de Produtos
  ********************************/  
 
+void VendeMaisMais::fillProductsVector(ifstream &stream)
+{
+	string line;
+	int lineCount = 0;
+	while (getline(stream, line))
+	{
+		if (!lineCount == 0)
+		{
+			int index1 = line.find_first_of(';');
+			string nome = line.substr(0, index1 - 1);
+			float custo = stoi(line.substr(index1 + 2));
+			Produto p = Produto(nome, custo);
+			produtos.push_back(p);
+			lineCount++;
+		}
+	}
+}
+
 // lisat os produto por ordem alfabetica crescente
 void VendeMaisMais::listarProdutos() const{
 
@@ -59,6 +75,30 @@ void VendeMaisMais::listarProdutos() const{
 
 }
 
+/*********************************
+* Gestao de Transacoes
+********************************/
+
+void VendeMaisMais::fillTransactionsVector(ifstream &stream)
+{
+	string line;
+	int lineCount = 0;
+	while (getline(stream, line))
+	{
+		if (!lineCount == 0)
+		{
+			int index1 = line.find_first_of(';');
+			int index2 = line.find_last_of(';');
+			unsigned int id = stoi(line.substr(0, index1 - 1));
+			Data date = Data(line.substr(index1 + 2, (index2 - 1) - (index1 + 2)));
+			vector<string> vetor;
+			extractProducts(vetor, line.substr(index2 + 2));
+			Transacao t = Transacao(id, date, vetor);
+			transacoes.push_back(t);
+			lineCount++;
+		}
+	}
+}
 
 /*********************************
  * Preservar Informacao
@@ -81,3 +121,4 @@ ostream& operator<<(ostream& out, const VendeMaisMais & supermercado){
   // A IMPLEMENTAR 
 
 }
+
