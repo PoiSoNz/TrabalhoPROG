@@ -38,16 +38,37 @@ void checkFile(ifstream &stream, string nomeFicheiro)//verifica se um ficheiro f
 	cout << "O ficheiro foi lido com sucesso! ";
 }
 
-
-void extractProducts(vector<string> vetor, string listaprodutos)
+void trim(string &s)
 {
-	while (listaprodutos != "")
+	if( (int)s.at(0)==32 ) //codigo ascii do espaço é 32
 	{
-		unsigned int index = listaprodutos.find_first_of(',');
-		string produto = listaprodutos.substr(0, index);
-		vetor.push_back(produto);
-		extractProducts(vetor, listaprodutos.substr(index + 2));
+	s.erase(0, 1);
+	trim(s);
+	}
+	
+	if( (int)s.at(s.size() - 1)==32 )
+	{
+		s.erase(s.size() - 1, 1);
+		trim(s);
+	}
+	
+	for(int i = 1; i<s.size(); i++)
+	{
+		if( (int)s.at(i)==32 && s.at(i)==a.at(i+1))
+		s.erase(i, 1);
 	}
 }
 
+int encontraCaracter(string s, char c, unsigned int num)// retorna a posição do numº caracter c na string s
+{
+	int contador= 0;
+	for ( int i = 0; i<s.size(); i++)
+	{
+		if(s.at(i)==c)
+		contador++;
+		
+		if(contador==num)
+		return i;
+	}
+}
 
