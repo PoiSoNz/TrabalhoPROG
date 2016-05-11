@@ -13,22 +13,26 @@ Cliente::Cliente(ifstream &fichClientes){//Consideramos o ID igual a zero, data 
 		string nome;
 		string cartaoCliente;
 		string volCompras;
+		char *pontovirgula=";";
+		
 		getline(fichClientes, linha);
+		
 		int primeiroPontovirgula;
 		int segundoPontovirgula;
 		int terceiroPontovirgula;
 		
 		primeiroPontovirgula= find_first_of(";");
-		segundoPontovirgula=
+		segundoPontovirgula= encontraPosicao(linha, *pontovirgula, 2);
 		terceiroPontovirgula= find_last_of(";");
 		
 		id= linha.substr(0, primeiroPontoVirgula);
 		nome= linha.substr(primeiroPontovirgula + 1, segundoPontovirgula - (primeiroPontovirgula + 1));
 		trim(nome);
 		cartaoCliente= linha.substr(segundoPontovirgula + 1, terceiroPontovirgula - (segundoPontovirgula + 1));
+		Date d(cartaoCliente);
 		volCompras= linha.substr(terceiroPontovirgula + 1);
 		
-		Cliente c( stoi(id), nome, cartaoCliente, stof(volCompras));
+		Cliente c( stoi(id), nome, d, stof(volCompras));
 		
 		vetorClientes.push_back(c);
 		
