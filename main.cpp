@@ -16,6 +16,7 @@ int main(){
   //Nome da loja
   cout << "Qual o nome da loja? ";
   getline(cin, loja);
+  trim(loja);
   cout << endl;
 
   //Clientes
