@@ -21,7 +21,7 @@ void VendeMaisMais::fillClientsVector(ifstream &stream)
 		if (!lineCount == 0)
 		{
 			int index1 = line.find_first_of(';');
-			int index2 = (line.substr(index1)).find_first_of(';');
+			int index2 = (line.substr(index1+1)).find_first_of(';');//pequena correcao
 			int index3 = line.find_last_of(';');
 			unsigned int id = stoi(line.substr(0, index1 - 1));
 			string name = line.substr(index1 + 2, (index2 - 1) - (index1 + 2));
