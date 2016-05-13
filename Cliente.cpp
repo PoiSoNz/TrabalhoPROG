@@ -31,6 +31,10 @@ unsigned int Cliente::getId() const{
   return id;
 }
 
+Data Cliente::getcartaoCliente() const{
+	return cartaoCliente;
+}
+
 float Cliente::getVolCompras() const{
   return volCompras;
 }
@@ -42,7 +46,8 @@ void Cliente::save(ofstream &out) const{
 }
 
 ostream& operator<<(ostream& out, const Cliente &cli){
-  // A IMPLEMENTAR
+  out << setw(5)<< left << cli.getId() << setw(25) << left << cli.getNome << setw(12) << left << cli.getcartaCliente << cli.getVolCompras;
+  return out;
 }
 
 
