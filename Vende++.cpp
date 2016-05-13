@@ -73,8 +73,13 @@ void VendeMaisMais::fillProductsVector(ifstream &stream)
 
 // lisat os produto por ordem alfabetica crescente
 void VendeMaisMais::listarProdutos() const{
-
-  // A IMPLEMENTAR 
+	cout<<"Produtos"<<endl;
+	cout<<"---------------------"<<endl;
+for( int i = 0; i<produtos.size(); i++)
+{
+	cout<<produtos[i]<<endl;
+}
+cout<<endl;
 
 }
 
