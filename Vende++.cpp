@@ -108,6 +108,28 @@ void VendeMaisMais::fillTransactionsVector(ifstream &stream)
 	}
 }
 
+void VendeMaisMais::showAllTransaction(){
+	cout<<"ID   Data        Produtos Comprados"<<endl;
+	cout<<"-----------------------------------"<<endl;
+	for( int i=0; i<transacoes.size(); i++)
+	{
+		cout<<setw(5)<<left<< transacoes[i].getIdCliente();
+		cout << setw(12)<<left<< transacoes[i].getData();
+		
+		for (int j=0; j<transacoes[i].getProdutos().size(); j++ )//percorre o vetor de produtos de uma transacao
+		{
+			if(j!= transacoes[i].getProdutos.produtosTransacao.size() - 1)
+			{
+			cout<< transacoes[i].getProdutos().produtosTransacao[j];
+			cout<<", ";
+			}
+			else cout<< transacoes[i].getProdutos().produtosTransacao;
+			
+		}
+		
+		
+	}
+}
 /*********************************
  * Preservar Informacao
  ********************************/  
@@ -129,4 +151,5 @@ ostream& operator<<(ostream& out, const VendeMaisMais & supermercado){
   // A IMPLEMENTAR 
 
 }
+
 
