@@ -1,24 +1,19 @@
 #include "Data.h"
 
 
-Data::Data(){//Uma data criada por omissão será 0/0/0
-	dia=0;
-	mes=0;
-	ano=0;
-}
-Data::Data(string dataStr){ // data na forma DD/MM/AAA
-	int barra1 = dataStr.find_first_of('//');
-	int barra2 = dataStr.find_last_of('//');
-	this->dia = stoi(dataStr.substr(0, barra1));
-	this->mes = stoi(dataStr.substr(barra1 + 1, barra2));
-	this->ano = stoi(dataStr.substr(barra2 + 1));
+Data::Data() {//Uma data criada por omissão será 0/0/0
+	dia = 0;
+	mes = 0;
+	ano = 0;
 }
 
-Data::Data(int dia, int mes, int ano){// data dividida em dia, mes, ano
-	this->dia = dia;
-	this->mes = mes;
-	this->ano = ano;
-}	
+Data::Data(string dataStr){ // data na forma DD/MM/AAA
+	int barra1 = dataStr.find_first_of("/");
+	int barra2 = dataStr.find_last_of("/");
+	this->dia = stoi(dataStr.substr(0, barra1));
+	this->mes = stoi(dataStr.substr(barra1 + 1, (barra2-(barra1-1))));
+	this->ano = stoi(dataStr.substr(barra2 + 1));
+}
 
 int Data::getDia() const{
   return dia;
@@ -49,5 +44,11 @@ void Data::save(ofstream & out) const{
 }
 
 ostream& operator<<(ostream& out, const Data & data){
-  // A IMPLEMENTAR
+	string date = "";
+	string day = to_string(data.getDia());
+	string mon= to_string(data.getMes());
+	string year = to_string(data.getAno());
+	date = date.append(day + "/" + mon + "/" + year);
+	out << date;
+	return out;
 }
