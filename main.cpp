@@ -34,19 +34,15 @@ int main(){
   cin >> fichTransactions;
   checkFile(ftransactions, fichTransactions);
 
-  //
-  VendeMaisMais obj = VendeMaisMais(loja, fichClients, fichProducts, fichTransactions);
-  obj.fillClientsVector(fclients);
-  obj.fillProductsVector(fproducts);
-  obj.fillTransactionsVector(ftransactions);
+  //Loja
+  //cria uma loja e preenche os vetores
+  VendeMaisMais supermercado = VendeMaisMais(loja, fichClients, fichProducts, fichTransactions);
+  supermercado.fillClientsVector(fclients);
+  supermercado.fillProductsVector(fproducts);
+  //supermercado.fillTransactionsVector(ftransactions);
 
-  // pede a informacoo sobre o nome da loja e os 3 ficheiros com
-  // informacoo de clientes, produtos e transacoes
-  if(!infoInicial(loja, fichClients, fichProducts, fichTransactions))
+  if(!infoInicial(loja, fichClients, fichProducts, fichTransactions))//nao se se isto vai ficar
     return(-1);
-
-  // cria uma loja
-  VendeMaisMais supermercado(loja, fichClients, fichProducts, fichTransactions);
 
   cout << "Informacao da loja '" << loja << " do supermercado Vende++:" << endl;
   cout << supermercado << endl;  // mostra estatisticas da loja
