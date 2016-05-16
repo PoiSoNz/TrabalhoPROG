@@ -1,10 +1,10 @@
 #include "Menus.h"
 
 
-
 bool infoInicial(string & loja, string & fichClientes, string & fichProdutos, string & fichTransacoes){
-
+	return true; //!!!!aqui foi so pra poder compilar
 }
+
 
 /******************************************
  * Gestao de Clientes
@@ -35,28 +35,87 @@ unsigned short int menuGestaoClientes(){
 void opcoesGestaoClientes(VendeMaisMais & supermercado){
   unsigned int opcao;
   string nome;
-
+  unsigned int idCheck, newId, id;
+  string newName, newCartaoCliente, name, data;
+  float newVolCompras, compras;
   while((opcao = menuGestaoClientes()))
+
     switch (opcao){
     case 1: supermercado.listarClientesOrdemAlfa();
       break;
     case 2: cout << "Qual o nome do cliente: ";
+	  cin.ignore();
       getline(cin, nome);
       supermercado.mostraInformacaoCliente(nome);
       break;
-    case 3: //supermercado.
+	case 3: supermercado.mostraInformacaoTodosClientes();
       break;
-    case 4: cout << "Qual o nome do cliente: ";
-	  getline(cin, nome);
-      //supermercado.
+    case 4: cout << "Qual o id do cliente: ";
+		cin >> id;
+		while (cin.fail() || id < 0)
+		{
+			cin.ignore();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			cout << "Tente novamente: ";
+			cin >> id;
+		}
+		cout << "Qual o nome do cliente: ";
+      cin.ignore();
+	  getline(cin, name);
+	  cout << "Qual a nova data de adesao do cliente (DD/MM/AAAA): ";
+	  cin >> data;
+	  //cin.ignore();
+	  //getline(cin, data);
+	  cout << "Qual o volume de compras do cliente: ";
+	  cin >> compras;
+	  while (cin.fail() || compras < 0)
+	  {
+		  cin.clear();
+		  cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		  cout << "Tente novamente: ";
+		  cin >> compras;
+	  }
+	  supermercado.criarCliente(id, name, data, compras);
       break;
-	case 5: cout << "Qual o nome do cliente: ";
-      getline(cin, nome);
-	  //supermercado.
+	case 5: 
+	  cout << "Qual o id do cliente: ";
+	  cin >> idCheck;
+	  while (cin.fail() || idCheck < 0)
+	  {
+		  cin.ignore();
+		  cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		  cout << "Tente novamente: ";
+		  cin >> idCheck;
+	  }
+	  cout << "Qual o novo id do cliente: ";
+	  cin >> newId;
+	  while (cin.fail() || newId < 0)
+	  {
+		  cin.clear();
+		  cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		  cout << "Tente novamente: ";
+		  cin >> newId;
+	  }
+	  cout << "Qual o novo nome do cliente: ";
+	  cin.ignore();
+	  getline(cin, newName);
+	  cout << "Qual a nova data de adesao do cliente (DD/MM/AAAA): ";
+	  cin >> data;
+	  cout << "Qual o novo volume de compras do cliente: ";
+	  cin >> newVolCompras;
+	  while (cin.fail() || newVolCompras < 0)
+	  {
+		  cin.clear();
+		  cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		  cout << "Tente novamente: ";
+		  cin >> newVolCompras;
+	  }
+	  supermercado.editarCliente(idCheck, newId, newName, newVolCompras, newCartaoCliente);
 	  break;
 	case 6: cout << "Qual o nome do cliente: ";
+	  cin.ignore();
 	  getline(cin, nome);
-	  //supermercado.
+	  supermercado.removerCliente(nome);
       break;
     }
 }
@@ -106,9 +165,11 @@ void opcoesGestaoTransacoes(VendeMaisMais & supermercado){
 /******************************************
  * Recomendacoes
  ******************************************/
-unsigned short int menuRecomendacao(){
 
+unsigned short int menuRecomendacao(){
+	return 9; //!!!
 }
+
 
 void opcoesRecomendacao(VendeMaisMais & supermercado){
   unsigned int opcao;
