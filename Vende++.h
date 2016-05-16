@@ -1,12 +1,3 @@
-#pragma once
-
-#include <iostream>
-#include <string>
-#include <map>
-#include<algorithm>
-
-
-#include "defs.h"
 #include "Data.h"
 #include "Cliente.h"
 #include "Transacao.h"
@@ -17,6 +8,7 @@
 using namespace std;
 
 class VendeMaisMais{
+	//friend void fillClientsVector(ifstream &stream, vector<Cliente> &vec);//preenche o vetor de clientes
  private:
   string loja; // nome da loja
   string fichClientes, fichProdutos, fichTransacoes; // nome dos
@@ -38,15 +30,19 @@ class VendeMaisMais{
 				   // transacoes
 
  public:
+  VendeMaisMais();
   VendeMaisMais(string loja, string fichClients, string fichProdutos, string fichTransacoes);
-  void fillClientsVector(ifstream &stream);//atualizei isto
   void listarClientesOrdemAlfa() const;
   void listarProdutos() const;
-  void mostraInformacaoCliente(string nome);
-  void fillClientsVector(ifstream &stream);//preenche o vetor de clientes
+  void mostraInformacaoCliente(string nome) const;
+  void mostraInformacaoTodosClientes() const;
+  void criarCliente(unsigned int id, string nome, string cartaoCliente, float volCompras);
+  void editarCliente(unsigned int idCheck, unsigned int id, string nome, float volCompras, string cartaoCliente);
+  void removerCliente(string nome);
+  void saveChanges() const;
   void fillProductsVector(ifstream &stream);//preenche o vetor de produtos
   void fillTransactionsVector(ifstream &stream);//preenche o vetor de transacoes
-  void saveChanges() const;
+  void fillClientsVector(ifstream &stream);//preenche o vetor de clientes
 
   friend ostream& operator<<(ostream& out, const VendeMaisMais & supermercado);
 };
