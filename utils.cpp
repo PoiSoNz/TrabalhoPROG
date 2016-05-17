@@ -125,3 +125,34 @@ bool verifyDate(int day, int month, int year)
 	else return true;
 
 }
+
+bool verifyDatesOrder(int oldDay, int oldMonth, int oldYear, int recentDay, int recentMonth, int recentYear)
+{//Verifies if two given dates are respectively the older and most recent date
+	if (!(oldYear <= recentYear))
+	{
+		return false;
+	}
+	if (oldYear < recentYear)//if the old year is smaller than the recent one, than it's guaranteed to be a valid date
+		return true;
+
+	
+	if (!(oldMonth <= recentMonth))
+	{
+		return false;
+	}
+	if (oldMonth < recentMonth)  //after comparing the years if the old month is smaller than the recent one, than it's guaranteed to be a valid date
+		return true;
+
+	if (!(oldDay <= recentDay))
+	{
+		return false;
+	}
+	if (oldDay < recentDay)////after comparing the months if the old day is smaller than the recent one, than it's guaranteed to be a valid date
+		return true;
+	else
+	{
+		
+		return false;
+	}
+
+}
