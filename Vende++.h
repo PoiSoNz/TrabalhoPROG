@@ -39,6 +39,8 @@ class VendeMaisMais{
   void criarCliente(unsigned int id, string nome, string cartaoCliente, float volCompras);
   void editarCliente(unsigned int idCheck, unsigned int id, string nome, float volCompras, string cartaoCliente);
   void removerCliente(string nome);
+  void VendeMaisMais::mostrarTransacoesDataEspecifica(Data data) const;
+  void VendeMaisMais::mostrarTransacoesEntreDatas(Data dataAntiga, Data dataRecente) const;
   void saveChanges() const;
   void fillProductsVector(ifstream &stream);//preenche o vetor de produtos
   void fillTransactionsVector(ifstream &stream);//preenche o vetor de transacoes
