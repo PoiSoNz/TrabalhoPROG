@@ -131,20 +131,122 @@ void VendeMaisMais::showAllTransaction(){
 	}
 }
 
-void VendeMaisMais::mostrarTransacoesData(Data data) const{
+void VendeMaisMais::mostrarTransacoesDataEspecifica (Data data) {
 	
+	while (!verifyData(data.getDia(), data.getMes(), data.getAno()))
+	{
+		string date;
+
+		cout << "A data que introduziu e invalida!" << endl;
+		cout << "Introduza novamente: ";
+		cin >> date;
+		Data d(date);
+		data = d;
+	}
+
+	int transacoesMostradas; //Numero de transacoes mostradas no ecra
 
 	cout << "Transacoes do dia " << data << endl << endl;
 	cout << "ID   Produtos Comprados" << endl;
-	cout << "-----------------------------------" << endl;
+	cout << "-----------------------" << endl;
 
 	for (int i = 0; i < transacoes.size(); i++)
 	{
 		if (transacoes[i].getData() == data)
 		{
-			cout << setw(5) << left << transacoes[i].getIdCliente() << setw(50) << left << transacoes[i].getProdutos() << endl;
+			cout << setw(5) << left << transacoes[i].getid() << setw(50) << left << transacoes[i].getprodutos() << endl;
+			transacoesMostradas++;
 		}
 	}
+
+	if (transacoesMostradas == 0)
+		cout << "Lamentamos mas nao foram encontradas quaisquer transacoes na data introduzida!";
+
+}
+
+void VendeMaisMais::mostrarTransacoesEntreDatas(Data dataAntiga, Data dataRecente) { //A dataAntiga é mais antiga do que a dataRecente
+
+	while ( !verifyData( dataAntiga.getDia(), dataAntiga.getMes(), dataAntiga.getAno() ) )
+	{
+		string date;
+
+		cout << "A data mais antiga que introduziu e invalida!" << endl;
+		cout << "Introduza novamente: ";
+		cin >> date;
+		Data d(date);
+		dataAntiga = d;
+	}
+
+	while ( !verifyData( dataRecente.getDia(), dataRecente.getMes(), dataRecente.getAno() ) )
+	{
+		string date;
+
+		cout << "A data mais recente que introduziu e invalida!" << endl;
+		cout << "Introduza novamente: ";
+		cin >> date;
+		Data d(date);
+		dataRecente = d;
+	}
+
+	while (!verifyDatesOrder(dataAntiga.getDia(), dataAntiga.getMes(), dataAntiga.getAno(), dataRecente.getDia(), dataRecente.getMes(), dataRecente.getAno()))
+	{
+		string dateAnterior;
+		string datePosterior;
+
+		cout << "As datas que introduziu encontram-se trocadas cronologicamente!" << endl;
+		cout << "Introduza novamente a data mais antiga: ";
+		cin >> dateAnterior;
+		cout << "Introduza novamente a data mais recente: ";
+		cin >> datePosterior;
+
+		Data d1(dateAnterior);
+		Data d2(datePosterior);
+
+		mostrarTransacoesEntreDatas(d1, d2); //Chama a funcao novamente para verificar se as novas datas introduzidas sao validas
+	}
+
+	
+	int transacoesMostradas; //Numero de transacoes mostradas no ecra
+
+	cout << "Transacoes desde " << dataAntiga << " ate " << dataRecente << endl << endl;
+	cout << "ID   Produtos Comprados" << endl;
+	cout << "-----------------------" << endl;
+
+	for (int i = 0; i < transacoes.size(); i++)
+	{
+		if (! ((transacoes[i].getAno() >= dataAntiga.getAno() ) && (transacoes[i].getAno <= dataRecente.getAno())))//se o ano de uma transacao é mais antigo do que o ano da data antiga OU é mais recente do que o ano da data recente, entao certamente NAO estara entre as duas datas
+		{
+		}
+		else if ((transacoes[i].getAno() > dataAntiga.getAno() ) && (transacoes[i].getAno() < dataRecente.getAno())) // se o ano de uma transacao é mais recente do que o ano da data antiga E é mais antigo do que o ano da data recente, entao certamente ESTARA entre as duas datas
+		{
+			cout << setw(5) << left << transacoes[i].getid() << setw(50) << left << transacoes[i].getprodutos() << endl;
+			transacoesMostradas++;
+
+			
+
+		}
+		else if (!((transacoes[i].getMes() >= dataAntiga.getMes()) && (transacoes[i].getMes <= dataRecente.getMes()))) //Depois do que ja foi verificado se o mes de uma transacao é menor do que o mes da data antiga OU é maior do que o mes da data recente, entao certamente NAO estara entre as duas datas
+		{
+		}
+		else if ((transacoes[i].getMes() > dataAntiga.getMes()) && (transacoes[i].getMes() < dataRecente.getMes())) //Depois do que ja foi verificado se o mes de uma transacao é maior do que o mes da data antiga E é menor do que o mes da data recente, entao certamente ESTARA entre as duas datas
+		{
+			cout << setw(5) << left << transacoes[i].getid() << setw(50) << left << transacoes[i].getprodutos() << endl;
+			transacoesMostradas++;
+
+		}
+		else if ((transacoes[i].getDia() >= dataAntiga.getDia()) && (transacoes[i].getDia() <= dataRecente.getDia())) //Depois do que ja foi verificado se o dia de uma transacao é maior ou igual ao o mes da data antiga E é menor ou igual ao mes da data recente, entao certamente ESTARA entre as duas datas CASO CONTRARIO NAO ESTARA
+		{
+			cout << setw(5) << left << transacoes[i].getid() << setw(50) << left << transacoes[i].getprodutos() << endl;
+			transacoesMostradas++;
+
+		}
+
+	}
+
+	if(transacoesMostradas==0)
+		cout<< "Lamentamos mas nao foram encontradas quaisquer transacoes entre as datas introduzidas!";
+
+
 
 }
 /*********************************
