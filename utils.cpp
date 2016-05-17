@@ -91,3 +91,37 @@ int encontraPosicao(string s, char *c, unsigned int num)// retorna a posição d
 			return i;
 	}
 }
+
+bool verifyDate(int day, int month, int year)
+{//Verifies if a date is valid
+	bool leapYear;
+
+	if (year % 4 == 0 && year % 100 != 0)
+		leapYear = true;
+	else if (year % 4 == 0 && year % 400 == 0)
+		leapYear = true;
+	else leapYear = false;
+
+	if (month <= 0 || month > 12)
+	{
+		return false;
+	}
+
+	int leapMonths[12] = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	int notLeapMonths[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+	if (leapYear)
+	{
+		if (day <= 0 || day > leapMonths[month - 1])
+		{
+			return false;
+		}
+		else return true;
+	}
+	else if (day <= 0 || day > notLeapMonths[month - 1])
+	{
+		return false;
+	}
+	else return true;
+
+}
