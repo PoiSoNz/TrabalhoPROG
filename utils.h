@@ -27,6 +27,8 @@ void extractProducts(vector<string> vetor, string listaprodutos);//extrai para o
 
 void lowerCase(string &s);//converte cada caracter de uma string de C++ para minuscula
 
-void trim(string &s);//comenta isto sff
+void trim(string &s);//elimina qualquer espaço no início e no fim de uma string, e quaisquer dois ou mais espaços entre duas palavras de uma mesma string são reduzidos a apenas um espaço
 
 int encontraPosicao(string s, char *c, unsigned int num);// retorna a posição do numº caracter *c na string s
+
+bool verifyDatesOrder(int oldDay, int oldMonth, int oldYear, int recentDay, int recentMonth, int recentYear); //Verifica se duas datas se encontram na ordem certa. A data oldDay/oldMonth/oldYear tem de ser anterior à data recentDay/recentMonth/recentYear
