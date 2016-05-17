@@ -130,6 +130,23 @@ void VendeMaisMais::showAllTransaction(){
 		
 	}
 }
+
+void VendeMaisMais::mostrarTransacoesData(Data data) const{
+	
+
+	cout << "Transacoes do dia " << data << endl << endl;
+	cout << "ID   Produtos Comprados" << endl;
+	cout << "-----------------------------------" << endl;
+
+	for (int i = 0; i < transacoes.size(); i++)
+	{
+		if (transacoes[i].getData() == data)
+		{
+			cout << setw(5) << left << transacoes[i].getIdCliente() << setw(50) << left << transacoes[i].getProdutos() << endl;
+		}
+	}
+
+}
 /*********************************
  * Preservar Informacao
  ********************************/  
