@@ -249,6 +249,137 @@ void VendeMaisMais::mostrarTransacoesEntreDatas(Data dataAntiga, Data dataRecent
 
 
 }
+
+void advertisment(vector<client_t>&clientsVector, vector<transaction_t>&transactionsVector, vector<string>&productsVector)
+{
+	/*MATRIX CREATION------------------------------------------------------------------------------------------------------------*/
+	vector<vector<bool>> matrix;
+
+	for (int i = 0; i < clientsVector.size(); i++)
+	{
+		vector<bool>productsLine;
+
+		for (int j = 0; j < productsVector.size(); j++)
+		{
+			productsLine.push_back(checkProduct(clientsVector.at(i).clientID, productsVector.at(j), transactionsVector));
+		}
+		matrix.push_back(productsLine);
+	}
+	/*-----------------------------------------------------------------------------------------------------------------------------*/
+	unsigned int id;
+
+	cout << "Introduce the ID whose client you want to advertise" << endl << endl;
+	cout << "ID: ";
+	cin >> id;//ID of the advertised client
+
+
+	string advertismentList;//Productsthat will be advertised
+
+	int advertisedPosition;//Matrix line position of the advertised client(it corresponds to his position on the clients vector)
+
+	advertisedPosition = clientVectorPosition(id, clientsVector); // position the advertised client occupies on both clients' vector and matrix(they are both the same)
+
+	if (advertisedPosition == 1000)
+	{
+		int operation;
+
+		cout << "Such ID does not exists!" << endl << endl;
+		cout << "Select what you want to do:" << endl;
+		cout << "1. Advertise a new client" << endl;
+		cout << "2. Quit to main menu" << endl;
+		cout << "Chosen operation: ";
+		cin >> operation;
+
+		cout << endl;
+
+		switch (operation)
+		{
+		case 1:
+			advertisment(clientsVector, transactionsVector, productsVector);
+		case 2:
+			optionsMenu(clientsVector, transactionsVector, productsVector);
+		}
+	}
+
+	for (int i = 0; i < clientsVector.size(); i++)//We will run through the matrix vector(it has the same number of lines has the clients lines)
+	{
+		int commonProducts = 0;//How many products the advertised client and another one have bought in common
+		int nonCommonProducts = 0;//How many products another client has, but the advertised one doedn't
+
+		if (i != advertisedPosition)
+		{
+			for (int j = 0; j < matrix.at(i).size(); j++)//Counts how much common and non common products there bewteen a client and the advertised one
+			{
+				if (matrix.at(i).at(j) == matrix.at(advertisedPosition).at(j) && true)//if a client and the advertised one have the same product
+				{
+					commonProducts++;
+				}
+				else if (matrix.at(i).at(j)==true && !matrix.at(advertisedPosition).at(j))//if a client has a product that the advertised one doesn't, then we will increase one on the nonCommonProducts variable
+				{
+					nonCommonProducts++;
+				}
+			}
+
+			//I will consider similar shopping habbits, if two people have bought at least 2 items in common
+
+			if (commonProducts >= 2 && nonCommonProducts > 0)//if a client has bought at least the same 2 items has the advertised one, and has also bought something that the advertised one didnt, then the items bought by the given client but not the advertised one will go into the advertisment list
+			{
+				for (int j = 0; j < matrix.at(i).size(); j++)
+				{
+					if (matrix.at(i).at(j)==true && !matrix.at(advertisedPosition).at(j))//the products that a given client has but the advertised one doesn't are put in a list
+					{
+						if (advertismentList.find(productsVector.at(j)) == string::npos)//If the product isn't already on the advertisment list, then it will be added
+						{
+							advertismentList.append(productsVector.at(j));
+							advertismentList.append(", ");
+						}
+					}
+
+				}
+			}
+
+		}
+
+	}
+
+	advertismentList.erase(advertismentList.size() - 2, 2);//to erase the last semicolon and space
+
+	cout << clientsVector.at(advertisedPosition).clientNAME;
+	cout << ", why don't you take a look at our freshest products!" << endl;
+	cout << advertismentList<<endl<<endl;
+
+	optionsMenu(clientsVector, transactionsVector, productsVector);
+
+}
+
+bool checkProduct(unsigned int clientId, string product, vector<transaction_t>&transactionsVector)
+{//verifies if a given client(ID) bought a given product
+	for (int i = 0; i < transactionsVector.size(); i++)
+	{
+		if (transactionsVector.at(i).clientID == clientId)//if the id matches with the transaction id, then it will look for the product on that transaction
+		{
+			if (transactionsVector.at(i).transactionITEMS.find(product) != string::npos)//verifies if the product exists in a transaction
+			{
+				return true;
+			}
+		}
+	}
+	//if the "for" loop ends, then it means that the product wasnt found on the client transactions, so it will be returned false
+	return false;
+}
+
+int clientVectorPosition(unsigned int id, vector<client_t>&clientsVector)
+{//returns the position of a client on the clients' vector
+
+	for (int i = 0; i < clientsVector.size(); i++)
+	{
+		if (clientsVector.at(i).clientID == id)
+		{
+			return i;
+		}
+	}
+	return 1000;//If it returns 1000, it means that the client has not been found
+}
 /*********************************
  * Preservar Informacao
  ********************************/  
