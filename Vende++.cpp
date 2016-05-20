@@ -438,7 +438,14 @@ void VendeMaisMais::saveChanges(string fichClientes, string fichTransacoes) cons
 // mostra o conteudo de uma loja
 ostream& operator<<(ostream& out, const VendeMaisMais & supermercado){
 
-  // A IMPLEMENTAR 
+  out << "Numero de clientes: " << clientes.size();
+  out << "Numero de transacoes: " << transacoes.size();
+  out << "Stock de produtos"<<endl;
+  out << "------------------";
+  for (int i = 0; i< produtos.size();i++)
+  {
+  	cout << produto << " euros" << endl;
+  }
 
 }
 
