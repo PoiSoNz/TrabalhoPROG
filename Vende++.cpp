@@ -385,9 +385,49 @@ int clientVectorPosition(unsigned int id, vector<client_t>&clientsVector)
  ********************************/  
 
 // guarda apenas a informacao de clientes e/ou de transacoes que foi alterada
-void VendeMaisMais::saveChanges() const{
+void VendeMaisMais::saveChanges(string fichClientes, string fichTransacoes) const{
+	
+//guradar informacao no ficheiro de clientes	
+		ofstream clientesStream;
+		string temporary;
+		clientesStream.open(fichClientes);
+		clientesStream << clientes.size() << endl;
 
-  // A IMPLEMENTAR 
+		for (int i = 0; i < clientes.size(); i++)
+		{
+			temporary.append(to_string(clientes[i].getId()));
+			temporary.append(" ; ");
+			temporary.append(clientes[i].getNome());
+			temporary.append(" ; ");
+			temporary.append(clientes[i].getCartaoCliente());
+			temporary.append(" ; ");
+			temporary.append(to_string(clientes[i].getVolCompras()));
+			temporary.append("\n");
+			clientesStream << temporary;
+			temporary.erase();
+		}
+		clientesStream.close();
+
+
+//guardar informacao no ficheiro de transacoes
+
+	ofstream transacoesStream;
+	string temporary;
+	transacoesStream.open(fichTransacoes);
+	transacoesStream << transacoes.size() << endl;
+
+	for (int i = 0; i < transacoes.size(); i++)
+	{
+		temporary.append(to_string(transacoes[i].getIdCliente()));
+		temporary.append(" ; ");
+		temporary.append(transacoes[i].getData());
+		temporary.append(" ; ");
+		temporary.append(transacoes[i].getProdutos());
+		temporary.append("\n");
+		transacoesStream << temporary;
+		temporary.erase();
+	}
+	transacoesStream.close();
 
 }
 
