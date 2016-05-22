@@ -616,14 +616,14 @@ void VendeMaisMais::verBottom10()
 void VendeMaisMais::recomendarBottom10()
 {
 	vector<Cliente> vec = clientes;
-	vector<Cliente> bottom10;
-	sort(vec.begin(), vec.end(), clienteMontante);
+	vector<Cliente> bottom10;//Vetor com todos os clientes Bottom10
+	sort(vec.begin(), vec.end(), clienteMontante);//organiza o vetor de clientes por ordem decrescente do volume de compras(ou seja, os ultimos dez elementos serao os clientes bottom10)
 	for (int i = 0; (i < 10) && (i < vec.size()); i++)
 	{
 		bottom10.push_back(vec[i]);
 	}
 
-	vector<vector<bool>> matrix;
+	vector<vector<bool>> matrix;// matrix com os clientes bottom10 e os produtos todos(sera utilizada para descobrir os prodtuos comuns aos bottom10)
 
 	for (int i = 0; i < bottom10.size(); i++)
 	{
@@ -652,8 +652,8 @@ void VendeMaisMais::recomendarBottom10()
 		}
 	}
 	vector<Cliente> vetor = clientes;
-	vector<Cliente> clientesNotBottom10;
-	sort(vetor.begin(), vetor.end(), clienteMontanteInvertido);
+	vector<Cliente> clientesNotBottom10;//vetor de clientes que nao pertencem aos bottom10(possiveis candidatos a clientes interessantes);
+	sort(vetor.begin(), vetor.end(), clienteMontanteInvertido);//organiza o vetor de clientes por ordem decrescente do volume de compras(ou seja, os primeiros (vetor.size() - 10) serao os clientes que nao pertencem aos bottom10)
 	if (!(clientes.size() > 10))
 	{
 		cout << "Nao foi possivel efetuar uma recomendacao dado que nao ha mais de 10 clientes." << endl;
@@ -665,7 +665,7 @@ void VendeMaisMais::recomendarBottom10()
 			clientesNotBottom10.push_back(vetor[i]);
 		}
 
-		vector<vector<bool>> matrixNotBottom10;
+		vector<vector<bool>> matrixNotBottom10;// matrix com os clientes NOT bottom10 e os produtos todos(sera utilizada para descobrir os clientes interessantes) ,   NOTA: as primeiras colunas desta matrix serao os produtos comuns aos bottom10 e as restantes colunas serao os restantes produtos
 
 		for (int i = 0; i < clientesNotBottom10.size(); i++)
 		{
@@ -684,7 +684,7 @@ void VendeMaisMais::recomendarBottom10()
 			}
 			matrixNotBottom10.push_back(productsLine);
 		}
-		vector<Cliente> clientesRecomendacao;
+		vector<Cliente> clientesRecomendacao;//vetor de clientes interessantes(NOTA: para ser um cliente intessante tera que ter as primeiras colunas que correspondem aos produtos comuns aos bottom10 todas a verdadeiro; e tera que ter tambem pelo menos uma das restantes colunas a verdadeiro)
 		for (int i = 0; i < clientesNotBottom10.size(); i++)
 		{
 			bool flag = true;
@@ -695,7 +695,7 @@ void VendeMaisMais::recomendarBottom10()
 					flag = false;
 				}
 			}
-			if (flag == true)
+			if (flag == true)//verifica se um dado cliente NOT bottom10 comprou todos os produtos comuns aos bottom10
 			{
 				bool flag2 = false;
 				for (int j = produtosComunsBottom10.size(); j < produtos.size(); j++)
@@ -705,15 +705,15 @@ void VendeMaisMais::recomendarBottom10()
 						flag = true;
 					}
 				}
-				if (flag == true)
+				if (flag == true)e verifica ainda tambem se comprou um produto nao comum aos bottom10
 				{
 					clientesRecomendacao.push_back(clientesNotBottom10[i]);
 				}
 			}
 		}
-		if (clientesRecomendacao.size() != 0)
+		if (clientesRecomendacao.size() != 0)//caso existam clientes interessantes sera entao feita a recomendacao
 		{
-			vector<string> produtosRecomendacao;
+			vector<string> produtosRecomendacao;// vetor de produtos comprados pelos clientes interessantes, nao comuns aos bottom10(NOTA: um produto aparece no vetor tantas vezes quantas tenha sido comprado pelo clientes interessantes)
 			preencheMapClienteProd();
 			for (int i = 0; i < clientesRecomendacao.size(); i++)
 			{
@@ -727,21 +727,21 @@ void VendeMaisMais::recomendarBottom10()
 			}
 			preencheMapProdutoRecomendacaoFrequencia(produtosRecomendacao);
 
-			vector<string> produtosRecomendacaoSemRepetidos;
+			vector<string> produtosRecomendacaoSemRepetidos;// vetor de produtos comprados pelos clientes interessantes, nao comuns aos bottom10(Sem repetir o mesmo produto varias vezes)
 
 			for (map<string, unsigned int>::iterator it = produtoRecomendacaoFrequenciax.begin(); it != produtoRecomendacaoFrequenciax.end(); ++it)
 			{
 				produtosRecomendacaoSemRepetidos.push_back(it->first);
 			}
 
-			vector<string> produtosRecomendacaoPorOrdemFrequencia = produtosRecomendacaoSemRepetidos;
+			vector<string> produtosRecomendacaoPorOrdemFrequencia = produtosRecomendacaoSemRepetidos;// o vetor produtosRecomendacaoPorOrdemFrequencia possui os produtos existentes no vetor produtosRecomendacaoSemRepetidos mas organizados por decrescente da quantidade de vezes que foram comprados pelos clientes interessantes
 			sort(produtosRecomendacaoPorOrdemFrequencia.begin(), produtosRecomendacaoPorOrdemFrequencia.end(), comparaProdutoFreq);
-			string produtoPublicitado;
+			string produtoPublicitado;// possui o produto que devera ser publicitado
 			bool flag = false;
 			preencheMapProdutoFrequenciaBottom10(produtosRecomendacaoPorOrdemFrequencia, bottom10);
 			for (int i = 0; i < produtosRecomendacaoPorOrdemFrequencia.size(); i++)
 			{
-				if (produtoRecomendacaoFrequenciaBottom10x.at(produtosRecomendacaoPorOrdemFrequencia[i]) == 0)
+				if (produtoRecomendacaoFrequenciaBottom10x.at(produtosRecomendacaoPorOrdemFrequencia[i]) == 0)//mal encontre um prduto do vetor produtosRecomendacaoPorOrdemFrequencia que nao tenha sido comrprado por ninguem dos bottom10, esse produto sera publicitado
 				{
 					flag = true;
 					produtoPublicitado = produtosRecomendacaoPorOrdemFrequencia[i];
@@ -753,7 +753,7 @@ void VendeMaisMais::recomendarBottom10()
 				unsigned int min = produtoRecomendacaoFrequenciaBottom10x.at(produtosRecomendacaoPorOrdemFrequencia[0]);
 				for (int i = 1; i < produtosRecomendacaoPorOrdemFrequencia.size(); i++)
 				{
-					if ((produtoRecomendacaoFrequenciaBottom10x.at(produtosRecomendacaoPorOrdemFrequencia[i])) < min)
+					if ((produtoRecomendacaoFrequenciaBottom10x.at(produtosRecomendacaoPorOrdemFrequencia[i])) < min)//caso nao haja nenhum produto que nao tenha sido comprado por niguem dos bottom10, sera aquele que foi menos comprado pelos bottom10 o produto publicitado
 					{
 						min = produtoRecomendacaoFrequenciaBottom10x.at(produtosRecomendacaoPorOrdemFrequencia[i]);
 						produtoPublicitado = produtosRecomendacaoPorOrdemFrequencia[i];
