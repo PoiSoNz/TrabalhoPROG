@@ -50,3 +50,4 @@ ostream& operator<<(ostream& out, const Transacao & trans) {
 	out << setw(5) << left << trans.getIdCliente() << setw(12) << left << trans.getData() << trans.getProdutos();
 	return out; 
 }
+
