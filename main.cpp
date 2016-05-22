@@ -9,47 +9,51 @@
 #include "utils.h"
 
 
-int main(){
-  string loja, fichClients, fichProducts, fichTransactions;
-  ifstream fclients, fproducts, ftransactions;
-  
-  //Nome da loja
-  cout << "Qual o nome da loja? ";
-  getline(cin, loja);
-  trim(loja);
-  cout << endl;
+int main() {
+	string loja, fichClients, fichProducts, fichTransactions;
+	ifstream fclients, fproducts, ftransactions;
 
-  //Clientes
-  cout << "Nome do ficheiro de clientes? ";
-  cin >> fichClients;
-  checkFile(fclients, fichClients);
+	//Nome da loja
+	cout << "Qual o nome da loja? ";
+	getline(cin, loja);
+	trim(loja);
+	cout << endl;
 
-  //Produtos
-  cout << "Nome do ficheiro de produtos? ";
-  cin >> fichProducts;
-  checkFile(fproducts, fichProducts);
+	//Clientes
+	cout << "Nome do ficheiro de clientes? ";
+	cin >> fichClients;
+	checkFile(fclients, fichClients);
+	cout << endl;
 
-  //Transacoes
-  cout << "Nome do ficheiro de transacoes? ";
-  cin >> fichTransactions;
-  checkFile(ftransactions, fichTransactions);
+	//Produtos
+	cout << "Nome do ficheiro de produtos? ";
+	cin >> fichProducts;
+	checkFile(fproducts, fichProducts);
+	cout << endl;
 
-  //Loja
-  //cria uma loja e preenche os vetores
-  VendeMaisMais supermercado = VendeMaisMais(loja, fichClients, fichProducts, fichTransactions);
-  supermercado.fillClientsVector(fclients);
-  supermercado.fillProductsVector(fproducts);
-  //supermercado.fillTransactionsVector(ftransactions);
+	//Transacoes
+	cout << "Nome do ficheiro de transacoes? ";
+	cin >> fichTransactions;
+	checkFile(ftransactions, fichTransactions);
+	cout << endl;
 
-  if(!infoInicial(loja, fichClients, fichProducts, fichTransactions))//nao se se isto vai ficar
-    return(-1);
+	//Loja
+	//cria uma loja e preenche os vetores
+	VendeMaisMais supermercado = VendeMaisMais(loja, fichClients, fichProducts, fichTransactions);
+	supermercado.fillClientsVector(fclients);
+	supermercado.fillProductsVector(fproducts);
+	supermercado.fillTransactionsVector(ftransactions);
 
-  cout << "Informacao da loja '" << loja << " do supermercado Vende++:" << endl;
-  cout << supermercado << endl;  // mostra estatisticas da loja
+	if (!infoInicial(loja, fichClients, fichProducts, fichTransactions))//nao se se isto vai ficar
+		return(-1);
 
-  opcoesIniciais(supermercado); // menu inicial com as grandes opcoes
-				// que implementam as funcioanlidades
-				// disonibilizadas
+	cout << "Informacao da loja '" << loja << "' do supermercado Vende++:" << endl;
+	supermercado.show();
+	cout << endl;  // mostra estatisticas da loja
 
-  return 0;
+	opcoesIniciais(supermercado); // menu inicial com as grandes opcoes
+				  // que implementam as funcioanlidades
+				  // disonibilizadas
+
+	return 0;
 }
