@@ -16,7 +16,8 @@ class Data {
   int ano;
 
  public:
-  Data(){};
+  Data();
+  Data(unsigned int dia, unsigned int mes, unsigned int ano);
   Data(string data); // data na forma DD/MM/AAA
   int getDia() const;
   int getMes() const;
@@ -26,6 +27,8 @@ class Data {
   void setAno(int ano);
   void save(ofstream & out) const;
   friend ostream& operator<<(ostream& out, const Data & data);
+  friend bool operator<(const Data &data1, const Data &data2);
+  friend bool operator==(const Data &data1, const Data &data2);
 };
 
 
