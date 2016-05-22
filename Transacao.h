@@ -6,6 +6,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <iomanip>
 
 #include "Data.h"
 
@@ -14,7 +15,7 @@
 using namespace std;
 
 
-class Transacao {
+class Transacao { 
  private:
   unsigned int idCliente;
   Data data; // na forma DD/MM/AAAAA
@@ -25,6 +26,8 @@ class Transacao {
   Transacao();
   Transacao(unsigned int idCliente, Data data, vector<string> produtos);
   unsigned int getIdCliente() const;
+  Data getData() const;
+  string getProdutos() const;
   void save(ofstream & out) const; // guarda a transacao
 
   friend ostream& operator<<(ostream& out, const Transacao & trans); // mostra a transacao
