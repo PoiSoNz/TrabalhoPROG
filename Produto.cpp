@@ -23,7 +23,7 @@ float Produto::getCusto() const {
 }
 
 ostream& operator<<(ostream& out, const Produto &prod){
-	out << setw(5) << left << prod.getNome() << setw(25) << fixed << setprecision(2) << prod.getCusto();
+	out << setw(26) << left << prod.getNome() << fixed << setprecision(2) << prod.getCusto();
 	out.unsetf(ios_base::floatfield);
 	return out;
 }
