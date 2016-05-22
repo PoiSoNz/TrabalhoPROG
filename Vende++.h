@@ -1,3 +1,13 @@
+#pragma once
+
+#include <iostream>
+#include <string>
+#include <map>
+#include <utility>
+#include<algorithm>
+
+
+#include "defs.h"
 #include "Data.h"
 #include "Cliente.h"
 #include "Transacao.h"
@@ -24,27 +34,44 @@ class VendeMaisMais{
   vector<Transacao> transacoes; // vetor que guarda a informacao das ttransacoes efetuadas
   map<string, int> clienteIdx;  // map para "traduzir" nome do cliente no indice dele no vetor de clientes
   map<string, int> produtoIdx;  // map para "traduzir" nome do produto no indice dele no vetor de produtos
-  multimap<int, int> transacaoIdx; // multima para "traduzir" o identificador do
-				   // cliente nos indices das suas
-				   // transacoes no vetor de
-				   // transacoes
+  map<unsigned int, vector<string>> clienteProdx; // map para "traduzir" o id do
+				   // cliente no vetor de TODOS os produtos por ele comprados
+  //map<string, unsigned int> produtoRecomendacaoFrequenciax;
+  vector<string> produto;
+  vector<unsigned int> quantidade;
 
+  map<string, unsigned int> produtoRecomendacaoFrequenciaBottom10x;//associa um produto de recomendacao ao numero de vezes total comprado por todos os Bottom10
+
+ 
  public:
   VendeMaisMais();
   VendeMaisMais(string loja, string fichClients, string fichProdutos, string fichTransacoes);
+  void preencheMapCliente(string nome);
+  void preencheMapClienteProd();
+  void preencheMapProduto(string nome);
+  void preencheMapProdutoRecomendacaoFrequencia(vector<string> &produtosRecomendacao);
+  void preencheMapProdutoFrequenciaBottom10(vector<string> &produtosRecomendacaoPorOrdemFrequencia, vector<Cliente> &Bottom10);
   void listarClientesOrdemAlfa() const;
   void listarProdutos() const;
   void mostraInformacaoCliente(string nome) const;
   void mostraInformacaoTodosClientes() const;
-  void criarCliente(unsigned int id, string nome, string cartaoCliente, float volCompras);
-  void editarCliente(unsigned int idCheck, unsigned int id, string nome, float volCompras, string cartaoCliente);
+  void criarCliente(unsigned int id, string nome, Data cartaoCliente, float volCompras);
+  void editarCliente(unsigned int idCheck, unsigned int id, string nome, float volCompras, Data cartaoCliente);
   void removerCliente(string nome);
-  void VendeMaisMais::mostrarTransacoesDataEspecifica(Data data) const;
-  void VendeMaisMais::mostrarTransacoesEntreDatas(Data dataAntiga, Data dataRecente) const;
-  void saveChanges() const;
+  void mostrarTransacoesDataEspecifica(Data data) const;
+  void mostrarTransacoesEntreDatas(Data dataAntiga, Data dataRecente) const;
+  void adicionarTransacao(unsigned int id, Data d, string listaProdutos);
+  void mostraTransacoesCliente(string nome) const;
+  void mostraTodasTransacoes() const;
   void fillProductsVector(ifstream &stream);//preenche o vetor de produtos
   void fillTransactionsVector(ifstream &stream);//preenche o vetor de transacoes
   void fillClientsVector(ifstream &stream);//preenche o vetor de clientes
-
-  friend ostream& operator<<(ostream& out, const VendeMaisMais & supermercado);
+  void recomendarCliente();
+  void verBottom10();
+  void recomendarBottom10();
+  friend bool comparaProdutoFreq(string &p1, string &p2);
+  unsigned int quantasVezesComprou(unsigned int idCliente, string produto);
+  void saveChanges();
+  
+  void show();
 };
