@@ -63,6 +63,13 @@ ostream& operator<<(ostream& out, const Cliente &cli) {
 	return out;
 }
 
+void lowerCase(string &s)
+{
+	for (int i = 0; i < s.length(); i++)
+	{
+		s[i] = tolower(s[i]);
+	}
+}
 
 bool operator<(const Cliente &cli1, const Cliente &cli2) {
 	string nome1 = cli1.getNome();
